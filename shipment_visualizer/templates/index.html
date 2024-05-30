@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Cargo Load Optimization</title>
+    <style>
+        .tilted-text {
+            transform: rotate(2deg); /* Adjust the degree of rotation as needed */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://img.freepik.com/premium-photo/3d-rendering-truck-dark-background-with-blue-lights_997053-198.jpg?w=1060");
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            position: absolute;
+            top: 140.8px; /* Top-left y-coordinate */
+            right: 147px;
+            width: 570px; /* Significantly reduce the width of the container */
+            height: 300px;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            color: #fff;
+            clip-path: polygon(
+                0% 0%,   /* 50px, 166px */
+                107% 10.4%, /* 550px, 176px */
+                105% 79.5%, /* 550px, 326px */
+                -1% 98% /* 50px, 466px */
+            ); /* Create a polygon shape */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        form {
+            text-align: center;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            display: inline-block;
+            background-color: #1869c1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transform: rotate(1.2deg);
+            margin-bottom: 20px;
+        }
+        .custom-file-upload:hover {
+            background-color: #1869c1;
+        }
+        .upload-label {
+            font-size: 18px;
+            transform: rotate(1.2deg);
+            margin-bottom: 10px;
+            display: block;
+            color: #fff;
+        }
+        input[type="submit"] {
+            background-color: #1869c1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transform: rotate(1.2deg);
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0073e6;
+        }
+        .footer {
+            position: fixed;
+            right: 0; /* Align to the extreme right */
+            bottom: 0;
+            background-color: transparent; /* Transparent background */
+            color: white;
+            text-align: center;
+            padding: 10px 20px; /* Adjust padding as needed */
+        }
+        .footer img {
+            margin-left: 11px; /* Adjust margin to create space between logos */
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: black;
+            color: #fff;
+            text-align: left;
+            border-radius: 5px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 150%; /* Position the tooltip above the text */
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext,
+        .tooltip .tooltiptext:hover {
+            visibility: visible;
+            opacity: 1;
+        }
+        .tooltiptext a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+            transition: background-color 0.3s;
+        }
+        .tooltiptext a img {
+            margin-right: 5px;
+        }
+        .tooltiptext a:hover {
+            background-color: #0073e6; /* Blue background on hover */
+        }
+        .tooltiptext a:hover img {
+            filter: brightness(0) invert(1); /* Invert image colors on hover */
+        }
+    </style>
+<script>
+    let tooltipTimeout;
+    
+    function showTooltip(element) {
+        clearTimeout(tooltipTimeout);
+        // Hide all tooltips first
+        document.querySelectorAll('.tooltiptext').forEach(tooltip => {
+            tooltip.style.visibility = 'hidden';
+            tooltip.style.opacity = '0';
+        });
+        // Show tooltip of the hovered element
+        element.querySelector('.tooltiptext').style.visibility = 'visible';
+        element.querySelector('.tooltiptext').style.opacity = '1';
+    }
+
+    function hideTooltip() {
+        tooltipTimeout = setTimeout(() => {
+            document.querySelectorAll('.tooltiptext').forEach(tooltip => {
+                tooltip.style.visibility = 'hidden';
+                tooltip.style.opacity = '0';
+            });
+        }); // 10 seconds
+    }
+</script>
+
+</head>
+<body>
+    <div class="container">
+        <h1 class="tilted-text">Intelligent Cargo Load Optimization</h1>
+        
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label class="upload-label" for="file">Choose a CSV file:</label>
+            <label class="custom-file-upload" for="file">Select File</label>
+            <input type="file" id="file" name="file">
+            <br>
+            <input type="submit" value="Visualize">
+        </form>
+    </div>
+    <div class="footer">
+        <div class="tooltip" onmouseover="showTooltip(this)" onmouseout="hideTooltip()">
+            <a ><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" width="30"></a>
+            <span class="tooltiptext">
+                <a href="https://github.com/7009soham" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" width="16"> Soham Tare</a><br>
+                <a href="https://github.com/ankush152002" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub" width="16"> Ankush Singh</a>
+            </span>
+        </div>
+        <div class="tooltip" onmouseover="showTooltip(this)" onmouseout="hideTooltip()">
+            <a ><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="30"></a>
+            <span class="tooltiptext">
+                <a href="https://www.linkedin.com/in/soham-tare-b08a72250/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="16"> Soham Tare</a><br>
+                <a href=" https://www.linkedin.com/in/ankush-singh-874ba6153/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="16"> Ankush Singh</a>
+            </span>
+        </div>
+        <br>
+        <span style="color: grey; font-size: smaller;">DEVELOPED BY SOHAM & ANKUSH</span>
+    </div>
+</body>
+</html>

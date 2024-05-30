@@ -1,0 +1,7 @@
+id,container_width,container_height,container_length,x,y,z,length,width,height,fragile
+1,5,3,10,1,1,1,2,2,4,yes
+2,5,3,10,3,2,1,3,1,2,no
+3,5,3,10,2,4,1,1,2,3,no
+4,5,3,10,2,4,1,1,2,2,yes
+5,5,3,10,2,4,1,1,2,2,yes
+6,5,3,10,2,4,1,1,2,2,no
