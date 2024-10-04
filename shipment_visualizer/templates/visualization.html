@@ -11,16 +11,59 @@
             background-repeat: no-repeat;
             background-position: center;
         }
-        .plotly-chart {
+        #visualization {
             width: 100%;
             height: 100vh;
         }
     </style>
+    <script src="https://threejs.org/build/three.js"></script>
   </head>
-  <body>
+  <body id="body">
     <h1>3D Container Visualization</h1>
-    <div class="plotly-chart">
-        <iframe src="/uploads/{{ visualization_filename }}" width="100%" height="100%" frameborder="0"></iframe>
+    <div id="visualization" class="plotly-chart">
+        <!-- The visualization created by your JavaScript code would go here. -->
     </div>
+    <script>
+    function visualizeBoxes(boxes) {
+        console.log(boxes);  // Log the data to the console
+
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer();
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        var container = document.getElementById('visualization');
+        container.appendChild(renderer.domElement);
+
+        boxes.forEach(function(box) {
+            console.log(box);  // Log each box to the console
+
+            var geometry = new THREE.BoxGeometry(box.length, box.width, box.height);
+            var material = new THREE.MeshBasicMaterial({color: box.color});
+            var cube = new THREE.Mesh(geometry, material);
+
+            cube.position.x = box.x;
+            cube.position.y = box.y;
+            cube.position.z = box.z;
+
+            scene.add(cube);
+        });
+
+        camera.position.z = 10;  // Adjust the camera position
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    }
+
+    var boxes = [
+        { length: 1, width: 1, height: 1, color: 0x00ff00, x: 0, y: 0, z: 0 },
+        { length: 2, width: 2, height: 2, color: 0xff0000, x: 3, y: 3, z: 3 }
+    ];
+    visualizeBoxes(boxes);
+    </script>
   </body>
 </html>
